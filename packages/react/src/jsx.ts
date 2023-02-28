@@ -1,11 +1,23 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Type } from 'typescript'
 import { REACT_ELEMENT_TYPE } from '../../share/ReactSymbols'
-import { Key, Ref, Props, ElementType } from '../../share/ReactTypes'
+import {
+	Key,
+	Ref,
+	Props,
+	ElementType,
+	ReactElementType,
+} from '../../share/ReactTypes'
 
-const ReactElement = (type: Type, key: Key, ref: Ref, props: Props) => {
+const ReactElement = (
+	type: Type,
+	key: Key,
+	ref: Ref,
+	props: Props
+): ReactElementType => {
 	const element = {
 		$$typeof: REACT_ELEMENT_TYPE,
+		type,
 		key,
 		ref,
 		props,
@@ -34,7 +46,7 @@ export const jsx = (type: ElementType, config: any, ...children) => {
 			props[prop] = val
 		}
 	}
-	props.children = [...children]
+	props.children = [...(props.children || []), ...children]
 	return ReactElement(type, key, ref, props)
 }
 
