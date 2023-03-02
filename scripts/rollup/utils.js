@@ -1,5 +1,7 @@
 import path from 'path'
 import { fileURLToPath } from 'url'
+import replace from '@rollup/plugin-replace'
+
 import fs from 'fs'
 const __filename = fileURLToPath(import.meta.url)
 
@@ -23,6 +25,9 @@ export function getPackageJson(pkgName) {
 	return JSON.parse(str)
 }
 
-export function getBaseRollupPlugins({ typescript = {} } = {}) {
-	return [cjs(), ts(typescript)]
+export function getBaseRollupPlugins({
+	alias = { __DEV__: true },
+	typescript = {},
+} = {}) {
+	return [replace(alias), cjs(), ts(typescript)]
 }
