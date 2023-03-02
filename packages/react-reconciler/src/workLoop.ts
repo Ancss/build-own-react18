@@ -6,7 +6,7 @@ import { HostRoot } from './workTags'
 let workInProgress: FiberNode | null = null
 
 function prepareFreshStack(root: FiberRootNode) {
-	workInProgress = createWorkInProgress(root.current,{})
+	workInProgress = createWorkInProgress(root.current, {})
 }
 
 export function scheduleUpdateOnFiber(fiber: FiberNode) {
@@ -35,18 +35,18 @@ function renderRoot(root: FiberRootNode) {
 			workLoop()
 			break
 		} catch (e) {
-			if(__DEV__){
+			if (__DEV__) {
 				console.warn('occurred a error in workLoop')
 			}
 			workInProgress = null
 		}
-	// eslint-disable-next-line no-constant-condition
+		// eslint-disable-next-line no-constant-condition
 	} while (true)
 
- const finishedWork = 	root.current.alternate
- root.finishedWork = finishedWork
+	const finishedWork = root.current.alternate
+	root.finishedWork = finishedWork
 
-//  commitRoot(root)
+	//  commitRoot(root)
 }
 
 function workLoop() {

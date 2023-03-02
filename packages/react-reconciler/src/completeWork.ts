@@ -16,13 +16,13 @@ export const completeWork = (wip: FiberNode) => {
 				appendAllChildren(instance, wip)
 				wip.stateNode = instance
 			}
+      bubbleProperties(wip)
       return null
 		case HostText:
 			if (current !== null && wip.stateNode) {
 				//
 			} else {
 				const instance = createTextInstance(newProps.content)
-				appendAllChildren(instance, wip)
 				wip.stateNode = instance 
 			} 
       bubbleProperties(wip)
